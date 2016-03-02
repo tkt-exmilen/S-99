@@ -9,7 +9,7 @@ class P01_10 {
     * @return
     */
   def last(list: List[Int]): Int = {
-    8
+    list.last
   }
 
   /**
