@@ -46,6 +46,11 @@ class P01_10Spec extends Specification {
       p01_10.nth(2, List(1, 1, 2, 3, 5, 8)) must beEqualTo(2)
     }
 
+    "exception NoSuchElementException" in {
+      val p01_10 = new P01_10
+      p01_10.nth(6, List(1, 1, 2, 3, 5, 8)) must throwA[NoSuchElementException]
+    }
+
   }
 
   "length" should {
@@ -68,9 +73,14 @@ class P01_10Spec extends Specification {
 
   "isPalindrome" should {
 
-    "normal" in {
+    "true" in {
       val p01_10 = new P01_10
       p01_10.isPalindrome(List(1, 2, 3, 2, 1)) must beEqualTo(true)
+    }
+
+    "false" in {
+      val p01_10 = new P01_10
+      p01_10.isPalindrome(List(1, 3, 3, 2, 1)) must beEqualTo(false)
     }
 
   }

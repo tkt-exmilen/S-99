@@ -9,7 +9,6 @@ class P01_10 {
     * @return
     */
   def last(list: List[Int]): Int = {
-    if (list == null) throw new NullPointerException
     if (list.isEmpty) throw new NoSuchElementException
     list.last
   }
@@ -23,7 +22,6 @@ class P01_10 {
     * @return
     */
   def penultimate(list: List[Int]): Int = {
-    if (list == null) throw new NullPointerException
     if (list.size < 2) throw new NoSuchElementException
     list.init.last
   }
@@ -34,11 +32,12 @@ class P01_10 {
     * Find the Kth element of a list.
     *
     * @param i
-    * @param ints
+    * @param list
     * @return
     */
-  def nth(i: Int, ints: List[Int]): Int = {
-    2
+  def nth(i: Int, list: List[Int]): Int = {
+    if (i < 0 | i >= list.size) throw new NoSuchElementException
+    list.take(i + 1).last
   }
 
   /**
@@ -46,11 +45,11 @@ class P01_10 {
     * P04
     * Find the number of elements of a list.
     *
-    * @param list
+    * @param ints
     * @return
     */
-  def length(list: List[Int]): Int = {
-    6
+  def length(ints: List[Int]): Int = {
+    ints.size
   }
 
   /**
@@ -58,11 +57,11 @@ class P01_10 {
     * P05
     * Reverse a list.
     *
-    * @param list
+    * @param ints
     * @return
     */
-  def reverse(list: List[Int]): List[Int] = {
-    List(8, 5, 3, 2, 1, 1)
+  def reverse(ints: List[Int]): List[Int] = {
+    ints.reverse
   }
 
   /**
@@ -70,11 +69,18 @@ class P01_10 {
     * P06
     * Find out whether a list is a palindrome.
     *
-    * @param list
+    * @param ints
     * @return
     */
-  def isPalindrome(list: List[Int]): Boolean = {
-    true
+  def isPalindrome(ints: List[Int]): Boolean = {
+    var isPalindrome = true
+    val halfSize = ints.size / 2
+    for (i <- 0 to halfSize) {
+      if (ints(i) != ints.reverse(i)) {
+        isPalindrome = false
+      }
+    }
+    isPalindrome
   }
 
   /**
@@ -82,11 +88,12 @@ class P01_10 {
     * P07
     * Flatten a nested list structure.
     *
-    * @param list
+    * @param elements
     * @return
     */
-  def flatten(list: List[Any]): List[Any] = {
-    List(1, 1, 2, 3, 5, 8)
+  def flatten(elements: List[Any]): List[Any] = elements flatten {
+    case i: List[Any] => flatten(i)
+    case e => List(e)
   }
 
   /**
