@@ -9,6 +9,8 @@ class P01_10 {
     * @return
     */
   def last(list: List[Int]): Int = {
+    if (list == null) throw new NullPointerException
+    if (list.isEmpty) throw new NoSuchElementException
     list.last
   }
 
@@ -21,7 +23,9 @@ class P01_10 {
     * @return
     */
   def penultimate(list: List[Int]): Int = {
-    5
+    if (list == null) throw new NullPointerException
+    if (list.size < 2) throw new NoSuchElementException
+    list.init.last
   }
 
   /**
