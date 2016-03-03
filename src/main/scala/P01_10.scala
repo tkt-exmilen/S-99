@@ -105,7 +105,15 @@ class P01_10 {
     * @return
     */
   def compress(symbols: List[Symbol]): List[Symbol] = {
-    List('a, 'b, 'c, 'a, 'd, 'e)
+    var outList =  List[Symbol]()
+    for (symbol <- symbols) {
+      if (outList.isEmpty) {
+        outList = outList :+ symbol
+      } else if (outList.last != symbol) {
+        outList = outList :+ symbol
+      }
+    }
+    return outList
   }
 
   /**
@@ -117,10 +125,33 @@ class P01_10 {
     * @return
     */
   def pack(symbols: List[Symbol]): List[List[Symbol]] = {
-    List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+    var outList = List[List[Symbol]]()
+    var tempList = List[Symbol]()
+    for (symbol <- symbols) {
+      if (tempList.isEmpty) tempList = tempList :+ symbol
+      else if (tempList.last == symbol) tempList = tempList :+ symbol
+      else if (tempList.last != symbol) {
+        outList = outList :+ tempList
+        tempList = List(symbol)
+      }
+    }
+    outList = outList :+ tempList
+    outList
   }
 
-  def encode(symbols: List[Symbol]) = {
-    List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+  /**
+    *
+    * P10
+    * Run-length encoding of a list.
+    *
+    * @param symbols
+    * @return
+    */
+  def encode(symbols: List[Symbol]): List[(Int, Symbol)] = {
+    var outList = List[(Int, Symbol)]()
+    for (list <- pack(symbols)) {
+      outList = outList :+ (list.length, list.head)
+    }
+    outList
   }
 }
