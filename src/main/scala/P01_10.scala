@@ -5,12 +5,12 @@ class P01_10 {
     * P01
     * Find the last element of a list.
     *
-    * @param list
+    * @param ints
     * @return
     */
-  def last(list: List[Int]): Int = {
-    if (list.isEmpty) throw new NoSuchElementException
-    list.last
+  def last(ints: List[Int]): Int = {
+    if (ints.isEmpty) throw new NoSuchElementException
+    ints.last
   }
 
   /**
@@ -18,12 +18,12 @@ class P01_10 {
     * P02
     * Find the last but one element of a list.
     *
-    * @param list
+    * @param ints
     * @return
     */
-  def penultimate(list: List[Int]): Int = {
-    if (list.size < 2) throw new NoSuchElementException
-    list.init.last
+  def penultimate(ints: List[Int]): Int = {
+    if (ints.size < 2) throw new NoSuchElementException
+    ints.init.last
   }
 
   /**
@@ -32,12 +32,12 @@ class P01_10 {
     * Find the Kth element of a list.
     *
     * @param i
-    * @param list
+    * @param ints
     * @return
     */
-  def nth(i: Int, list: List[Int]): Int = {
-    if (i < 0 | i >= list.size) throw new NoSuchElementException
-    list.take(i + 1).last
+  def nth(i: Int, ints: List[Int]): Int = {
+    if (i < 0 | i >= ints.size) throw new NoSuchElementException
+    ints.take(i + 1).last
   }
 
   /**
